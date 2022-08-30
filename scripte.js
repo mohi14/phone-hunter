@@ -9,6 +9,15 @@ const loadPhones = async (searchText) => {
 const displayPhones = phones => {
     const phonesContainer = document.getElementById('phones-container');
     phonesContainer.textContent = '';
+
+    const noPhoneFound = document.getElementById('no-phones-massage')
+    if (phones.length === 0) {
+        noPhoneFound.classList.remove('d-none');
+    }
+    else {
+        noPhoneFound.classList.add('d-none');
+    }
+
     phones.forEach(phone => {
         console.log(phone);
         const divPhones = document.createElement('div');
@@ -25,10 +34,26 @@ const displayPhones = phones => {
         `;
         phonesContainer.appendChild(divPhones);
     });
+    //stop spinner
+    toggleSpinners(false);
 }
 document.getElementById('btn-search').addEventListener('click', function () {
+    //start spinner
+    toggleSpinners(true);
+
     const inputField = document.getElementById('input-field');
     const searchText = inputField.value;
     loadPhones(searchText);
 
 })
+
+const toggleSpinners = isLoadding => {
+    const loadder = document.getElementById('spinners');
+
+    if (isLoadding) {
+        loadder.classList.remove('d-none');
+    }
+    else {
+        loadder.classList.add('d-none');
+    }
+}
