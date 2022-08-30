@@ -68,6 +68,14 @@ document.getElementById('btn-search').addEventListener('click', function () {
 
 })
 
+//search by press Enter
+
+document.getElementById('input-field').addEventListener('keypress', function (event) {
+    if (event.key === 'Enter') {
+        processSearch(10);
+    }
+})
+
 const toggleSpinners = isLoadding => {
     const loadder = document.getElementById('spinners');
 
@@ -78,7 +86,7 @@ const toggleSpinners = isLoadding => {
         loadder.classList.add('d-none');
     }
 }
-
+// show all button
 document.getElementById('btn-show-all').addEventListener('click', function () {
     processSearch();
 })
